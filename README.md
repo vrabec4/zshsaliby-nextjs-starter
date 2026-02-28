@@ -1,36 +1,39 @@
-# ZS Dolne Saliby Production Redesign
+# ZS Dolne Saliby - Full Content Redesign
 
-Production-ready redesign baseline for a school website, with source content mapped from:
-`https://zsdolnesaliby.edupage.org/`
+Production-ready school website with fully local content rendering (no embedding, no redirecting to origin).
 
-## What is implemented
-- Next.js 16 App Router + TypeScript + Tailwind CSS 4
-- Production app shell (responsive header, section templates, footer)
-- Structured section routes:
+## Implemented
+- Next.js 16 + TypeScript + Tailwind CSS 4
+- Functional school website with all major EduPage modules:
   - `/school`
   - `/news`
   - `/calendar`
   - `/timetable`
+  - `/substitution`
   - `/teachers`
+  - `/forms`
+  - `/subjects`
+  - `/classrooms`
   - `/kruzky`
+  - `/library`
+  - `/album`
   - `/contact`
+- Each module page contains:
+  - local context/highlights
+  - locally stored module content from `src/content/edupage-snapshot.json`
+- Contact form + API endpoint:
+  - `POST /api/contact`
+  - zod validation + honeypot field
 - SEO baseline:
-  - route metadata
-  - `robots.ts`
-  - `sitemap.ts`
-  - `manifest.ts`
+  - metadata
+  - `robots.txt`, `sitemap.xml`, `manifest.webmanifest`
   - JSON-LD organization schema
 - Security baseline:
-  - CSP and core security headers in `next.config.ts`
-- Contact flow:
-  - validated client form
-  - validated API endpoint: `POST /api/contact`
-  - honeypot anti-bot field
-- CI quality gates:
-  - lint
-  - typecheck
-  - build
-  - Playwright + axe checks
+  - CSP and HTTP security headers in `next.config.ts`
+- Quality tooling:
+  - ESLint, TypeScript checks
+  - Playwright + axe tests
+  - Lighthouse CI config
 
 ## Quick start
 ```bash
@@ -49,6 +52,3 @@ Open `http://127.0.0.1:3001`.
 - `npm run build`
 - `npm run test:e2e`
 - `npm run lhci`
-
-## Source and migration note
-Current page copy is intentionally sourced from `zsdolnesaliby.edupage.org` and structured for later CMS migration.

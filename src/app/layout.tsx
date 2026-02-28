@@ -10,15 +10,15 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: {
-    default: "ZS Dolne Saliby - Redesign",
-    template: "%s | ZS Dolne Saliby",
+    default: `${siteConfig.name} – Základná škola`,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "ZS Dolne Saliby - Redesign",
+    title: `${siteConfig.name} – Základná škola`,
     description: siteConfig.description,
     url: siteConfig.siteUrl,
     siteName: siteConfig.name,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ZS Dolne Saliby - Redesign",
+    title: `${siteConfig.name} – Základná škola`,
     description: siteConfig.description,
   },
   applicationName: siteConfig.name,
@@ -50,7 +50,7 @@ export default function RootLayout({
     address: {
       "@type": "PostalAddress",
       streetAddress: contactDetails.street,
-      addressLocality: "Dolne Saliby",
+      addressLocality: "Dolné Saliby",
       postalCode: "92502",
       addressCountry: "SK",
     },
