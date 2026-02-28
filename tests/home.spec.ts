@@ -5,10 +5,10 @@ test("landing page renders key sections", async ({ page }) => {
   await page.goto("/");
   await expect(
     page.getByRole("heading", {
-      name: "Modern school web foundation built for clarity, speed, and trust.",
+      name: "ZS Dolne Saliby",
     }),
   ).toBeVisible();
-  await expect(page.getByRole("button", { name: "Send inquiry" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Otvorit sekciu" }).first()).toBeVisible();
 });
 
 test("landing page has no critical accessibility issues", async ({ page }) => {

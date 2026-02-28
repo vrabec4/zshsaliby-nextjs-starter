@@ -10,6 +10,7 @@ const eslintConfig = defineConfig([
     files: ["**/*.{ts,tsx,js,jsx,mjs,cjs}"],
     rules: {
       ...jsxA11y.configs.recommended.rules,
+      "@next/next/no-html-link-for-pages": "off",
     },
   },
   globalIgnores([

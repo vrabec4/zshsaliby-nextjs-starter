@@ -1,156 +1,103 @@
-import { ArrowRight, CircleCheckBig, Globe, ShieldCheck, Sparkles } from "lucide-react";
+import { SiteShell } from "@/components/site-shell";
+import { contactDetails, siteConfig } from "@/lib/site";
 
-import { ContactForm } from "@/components/contact-form";
-import { Button } from "@/components/ui/button";
-import { getLatestAnnouncements } from "@/lib/content";
-
-const navItems = [
-  { label: "School", href: "/school" },
-  { label: "Students", href: "/students" },
-  { label: "Parents", href: "/parents" },
-  { label: "Cafeteria", href: "/cafeteria" },
-  { label: "Documents", href: "/documents" },
-  { label: "Contact", href: "#contact" },
-];
-
-const pillars = [
+const sectionLinks = [
   {
-    title: "Fast content publishing",
-    detail: "Sanity CMS model for announcements, events, menus, and official documents.",
-    icon: Sparkles,
+    title: "O skole",
+    text: "Zakladne institucionalne informacie zo stranky O skole.",
+    href: "/school",
   },
   {
-    title: "Accessibility by default",
-    detail: "Semantic templates with lint, Playwright, and axe checks in the pipeline.",
-    icon: ShieldCheck,
+    title: "Novinky",
+    text: "Obsahova vrstva pre oznamy, smernice a skolske informacie.",
+    href: "/news",
   },
   {
-    title: "Performance and SEO",
-    detail: "Hybrid rendering, optimized media, and Lighthouse checks for releases.",
-    icon: Globe,
+    title: "Kalendar",
+    text: "Terminova vrstva skoly pre podujatia a organizaciu roka.",
+    href: "/calendar",
   },
-];
+  {
+    title: "Rozvrh a suplovanie",
+    text: "Kriticky modul pre kazdodennu prevadzku ziakov a ucitelov.",
+    href: "/timetable",
+  },
+  {
+    title: "Ucitelia a triedy",
+    text: "Datovy model pre ucitelov, triedy, predmety a ucebne.",
+    href: "/teachers",
+  },
+  {
+    title: "Kruzky",
+    text: "Mimo-vyucovacie aktivity a ich strukturovane publikovanie.",
+    href: "/kruzky",
+  },
+  {
+    title: "Kontakt",
+    text: "Overene kontaktne udaje a produkcny kontaktovy formular.",
+    href: "/contact",
+  },
+] as const;
 
-export default async function Home() {
-  const announcements = await getLatestAnnouncements();
-
+export default function Home() {
   return (
-    <div className="relative overflow-x-clip bg-[var(--color-page)] text-[var(--color-ink)]">
-      <div className="pointer-events-none absolute -top-28 left-1/2 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-[var(--color-accent)]/35 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-8rem] top-[18rem] -z-10 h-72 w-72 rounded-full bg-[var(--color-ocean)]/35 blur-3xl" />
-
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <span className="rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-sm font-semibold shadow-sm">
-          ZS Horne Saliby
-        </span>
-        <nav aria-label="Primary">
-          <ul className="hidden gap-5 text-sm font-medium md:flex">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a className="hover:text-[var(--color-ocean)]" href={item.href}>
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
-
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-14 px-6 pb-20 pt-4 md:gap-20 md:pb-28">
-        <section className="grid gap-10 md:grid-cols-[1.25fr_0.75fr] md:items-end">
-          <div className="space-y-6">
-            <p className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-ocean)]">
-              Next.js Starter
-            </p>
-            <h1 className="max-w-3xl font-serif text-4xl leading-tight md:text-6xl">
-              Modern school web foundation built for clarity, speed, and trust.
-            </h1>
-            <p className="max-w-2xl text-base leading-8 text-[var(--color-muted)] md:text-lg">
-              This starter wires your planned architecture: Next.js App Router,
-              TypeScript, Tailwind, Sanity integration, accessibility testing,
-              and production quality gates.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild>
-                <a href="#contact">
-                  Start implementation <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-              <Button variant="secondary" asChild>
-                <a href="#architecture">Review architecture</a>
-              </Button>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-[var(--color-border)] bg-white/90 p-5 shadow-xl shadow-[var(--color-shadow)] backdrop-blur">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-muted)]">
-              Starter includes
-            </p>
-            <ul className="space-y-3 text-sm">
-              {[
-                "Sanity client and content loader",
-                "Sentry + Plausible integration points",
-                "React Hook Form + Zod validation",
-                "Playwright + axe accessibility testing",
-                "Lighthouse CI config and CI workflow",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <CircleCheckBig className="mt-0.5 h-4 w-4 text-emerald-700" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <SiteShell>
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-6 pb-20 pt-10 md:gap-12 md:pb-24">
+        <section className="space-y-5 rounded-3xl border border-[var(--color-border)] bg-white p-6 md:p-10">
+          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-ocean)]">
+            Produkcny redesign baseline
+          </p>
+          <h1 className="max-w-4xl font-serif text-4xl leading-tight md:text-6xl">
+            {siteConfig.name}
+          </h1>
+          <p className="max-w-3xl text-base leading-8 text-[var(--color-muted)] md:text-lg">
+            Tento projekt je pripraveny ako produkcny zaklad pre kompletny redesign
+            webu s obsahom mapovanym vylucne zo zdroja EduPage.
+          </p>
+          <p className="text-sm text-[var(--color-muted)]">
+            Zdroj: <a className="underline decoration-dotted" href={siteConfig.sourceUrl}>{siteConfig.sourceUrl}</a>
+          </p>
         </section>
 
-        <section id="architecture" className="grid gap-4 md:grid-cols-3">
-          {pillars.map((pillar) => (
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {sectionLinks.map((item) => (
             <article
-              key={pillar.title}
+              key={item.href}
               className="rounded-2xl border border-[var(--color-border)] bg-white p-5 shadow-sm"
             >
-              <pillar.icon className="mb-3 h-6 w-6 text-[var(--color-ocean)]" />
-              <h2 className="mb-2 text-xl font-semibold">{pillar.title}</h2>
-              <p className="text-sm leading-7 text-[var(--color-muted)]">{pillar.detail}</p>
+              <h2 className="mb-2 text-xl font-semibold">{item.title}</h2>
+              <p className="mb-4 text-sm leading-7 text-[var(--color-muted)]">{item.text}</p>
+              <a className="text-sm font-semibold text-[var(--color-ocean)]" href={item.href}>
+                Otvorit sekciu
+              </a>
             </article>
           ))}
         </section>
 
-        <section className="grid gap-6 rounded-3xl border border-[var(--color-border)] bg-white p-6 md:grid-cols-2 md:p-8">
+        <section className="grid gap-4 rounded-3xl border border-[var(--color-border)] bg-white p-6 md:grid-cols-2 md:p-8">
           <div>
-            <h2 className="mb-3 text-2xl font-semibold">CMS preview slot</h2>
-            <p className="mb-4 text-sm leading-7 text-[var(--color-muted)]">
-              When Sanity credentials are provided, latest announcements can
-              render here from structured content.
-            </p>
-            {announcements.length > 0 ? (
-              <ul className="space-y-2 text-sm">
-                {announcements.map((item) => (
-                  <li key={item._id} className="rounded-xl bg-[var(--color-surface)] p-3">
-                    <p className="font-semibold">{item.title}</p>
-                    {item.excerpt ? (
-                      <p className="text-[var(--color-muted)]">{item.excerpt}</p>
-                    ) : null}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="rounded-xl bg-[var(--color-surface)] p-3 text-sm">
-                No CMS data yet. Configure `.env.local` with Sanity project values.
-              </p>
-            )}
+            <h2 className="mb-3 text-2xl font-semibold">Kontaktne udaje</h2>
+            <ul className="space-y-2 text-sm text-[var(--color-muted)]">
+              <li>{contactDetails.schoolName}</li>
+              <li>{contactDetails.street}</li>
+              <li>{contactDetails.city}</li>
+              <li>{contactDetails.email}</li>
+              <li>{contactDetails.phone}</li>
+              <li>{contactDetails.mobile}</li>
+            </ul>
           </div>
 
-          <div id="contact">
-            <h2 className="mb-3 text-2xl font-semibold">Contact form starter</h2>
-            <p className="mb-4 text-sm leading-7 text-[var(--color-muted)]">
-              Client-side validation is ready. Connect submit handling to
-              `src/app/api/contact/route.ts` when you add your backend flow.
-            </p>
-            <ContactForm />
+          <div>
+            <h2 className="mb-3 text-2xl font-semibold">Pre produkciu</h2>
+            <ul className="space-y-2 text-sm text-[var(--color-muted)]">
+              <li>Pripraveny SEO zaklad: metadata, sitemap, robots, manifest.</li>
+              <li>Pripraveny bezpecnostny zaklad: security headers v Next.js.</li>
+              <li>Pripraveny kontaktovy endpoint s validaciou vstupov.</li>
+              <li>Obsahove sekcie su modulove a pripravene na napojenie CMS.</li>
+            </ul>
           </div>
         </section>
       </main>
-    </div>
+    </SiteShell>
   );
 }
